@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="post" [hidden]="loading">
+    <form [formGroup]="form">
+      <a [routerLink]="['/posts']">voltar</a>
+
+      <input formControlName="title" type="text" [disabled]="editing == false">
+      <div class="line">
+        <p>Autor: {{user?.name}}</p>
+
+        <div class="editing">
+          <button (click)="startEditing()" [disabled]="editing">Edit</button>
+          <button (click)="confirmEditing()" [disabled]="!editing">Confirm</button>
+        </div>
+      </div>
+      <textarea formControlName="body" type="text" [disabled]="editing && !form.valid"></textarea>
+    </form>
+
+  </div>
+</div>
+
+<div [hidden]="!loading">
+  <div role="status" >
+    <span id="loading"></span>
+  </div>
+</div>
+
